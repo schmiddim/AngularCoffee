@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>Kostenrechner für Nespresso Kaffee </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body  style="max-width: 700px;margin: 0 auto;">
+	<header>
+		<h1 class="text-center">Kostenrechner für Nespresso Kaffee</h1>
+
+	</header>
+	<div class="list-group" ng-app="coffee">
+		<div class="list-group-item">
+			<div ng-controller="CoffeeController as coffeeCtrl">	
+				<form role="form" name="calculateForm" ng-submit="coffeeCtrl.calculate()">
+					
+					<blockquote ng-show="coffeeCtrl.showStats">
+						
+						<h2>Kapselkaffe kostet Sie {{coffeeCtrl.pricePerYear|currency:"&euro;"}} pro Jahr!</h2>
+						<h3>Preis pro Kg {{coffeeCtrl.pricePerKg|currency:"&euro;"}}</h3>
+
+
+					</blockquote>
+					<fieldset class="form-group">
+						<label for="nof">Tragen Sie Ihren Konsum ein</label>
+						<input  id="nof" class="form-control" type="number" ng-model="coffeeCtrl.numberOfCapsulesPerWeek" placeholder="Wie viele Tassen Kaffee trinken Sie"/>
+					</fieldset>
+					<fieldset>
+						<select ng-options="range.name for range in coffeeCtrl.timeRanges" ng-model="coffeeCtrl.currentTimeRange" class="form-control">
+							<option>pro Woche?</option>
+							<option>pro Tag?</option>
+						</select>
+					</fieldset>
+
+					<fieldset>
+						<button type="submit"class="btn btn-primary pull-right">Berechnen</button>
+					</fieldset>
+
+				</form>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>
